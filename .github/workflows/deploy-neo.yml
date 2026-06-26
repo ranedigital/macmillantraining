@@ -21,6 +21,7 @@ jobs:
         run: |
           pwd
           git rev-parse --short HEAD
+          mkdir -p macmillantraining.co.uk
           ls -la macmillantraining.co.uk
           if [ -f macmillantraining.co.uk/neo.html ]; then
             echo "neo.html is present and will be deployed"
