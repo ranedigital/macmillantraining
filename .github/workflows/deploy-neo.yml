@@ -1,0 +1,39 @@
+name: Deploy NEO test
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - ".github/workflows/deploy-neo.yml"
+      - "macmillantraining.co.uk/neo.html"
+
+jobs:
+  deploy-neo:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Trace deployment source
+        run: |
+          pwd
+          git rev-parse --short HEAD
+          ls -la macmillantraining.co.uk
+          test -f macmillantraining.co.uk/neo.html
+
+      - name: Deploy test file by FTP
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          port: ${{ secrets.FTP_PORT }}
+          protocol: ${{ secrets.FTP_PROTOCOL }}
+          local-dir: ./macmillantraining.co.uk/
+          server-dir: ${{ secrets.FTP_BASE_DIR }}
+          exclude: |
+            **
+            !neo.html
