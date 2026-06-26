@@ -1,0 +1,12 @@
+# macOS / transfer metadata
+.DS_Store
+._*
+__MACOSX/
+
+# Local migration artifacts
+*.zip
+*.sql
+*.sql.gz
+virus_attacks_*.csv
+Screenshot *.png
+*.docx
