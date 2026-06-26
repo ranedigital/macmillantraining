@@ -22,7 +22,11 @@ jobs:
           pwd
           git rev-parse --short HEAD
           ls -la macmillantraining.co.uk
-          test -f macmillantraining.co.uk/neo.html
+          if [ -f macmillantraining.co.uk/neo.html ]; then
+            echo "neo.html is present and will be deployed"
+          else
+            echo "neo.html is absent and the FTP sync should remove it if previously deployed"
+          fi
 
       - name: Deploy test file by FTP
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
