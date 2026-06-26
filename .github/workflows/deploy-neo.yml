@@ -33,7 +33,7 @@ jobs:
           port: ${{ secrets.FTP_PORT }}
           protocol: ${{ secrets.FTP_PROTOCOL }}
           local-dir: ./macmillantraining.co.uk/
-          server-dir: ${{ secrets.FTP_BASE_DIR }}
+          server-dir: ${{ secrets.FTP_BASE_DIR }}/
           exclude: |
             **
             !neo.html
